@@ -5573,3 +5573,22 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
+.my-node-enter {
+  opacity: 0;
+  transition: all 200ms linear;
+}
+.my-node-enter-active {
+  opacity: .5;
+  transition: all 200ms linear;
+}
+.my-node-enter-done {
+  opacity: 1;
+  transition: all 200ms linear;
+}
+/* .my-node-exit {
+  opacity: 1;
+}
+.my-node-exit-active {
+  opacity: 0;
+  transition: all 200ms;
+} */
