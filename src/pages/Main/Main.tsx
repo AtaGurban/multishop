@@ -1,5 +1,5 @@
 import React, { FC, useRef, useState } from "react";
-import {CSSTransition} from 'react-transition-group';
+import { CSSTransition } from "react-transition-group";
 import CarouselOne from "../../assets/img/carousel-1.jpg";
 import CarouselTwo from "../../assets/img/carousel-2.jpg";
 import CarouselThree from "../../assets/img/carousel-3.jpg";
@@ -20,10 +20,13 @@ import vendorSeven from "../../assets/img/vendor-7.jpg";
 import vendorEight from "../../assets/img/vendor-8.jpg";
 import { Dropdown } from "react-bootstrap";
 import DropdownButton from "react-bootstrap/esm/DropdownButton";
+import CarouselFade from "./components/CarouselFade";
 
 const Main: FC<{}> = () => {
-    const [categoryListShow, setCategoryListShow] = useState(false)
-    const nodeRef = useRef(null);
+  const [categoryListShow, setCategoryListShow] = useState(false);
+
+  const carouselImg = [CarouselOne, CarouselThree, CarouselTwo]
+
   return (
     <div>
       <div className="container-fluid">
@@ -161,11 +164,13 @@ const Main: FC<{}> = () => {
       </div>
       <div className="container-fluid bg-dark mb-30">
         <div className="row px-xl-5">
-          <div className="col-lg-3 d-none d-lg-block position-relative" onClick={()=>setCategoryListShow(!categoryListShow)}>
+          <div
+            className="col-lg-3 d-none d-lg-block position-relative"
+            onClick={() => setCategoryListShow(!categoryListShow)}
+          >
             <span
               className="btn d-flex align-items-center justify-content-between bg-primary w-100 collapsed"
               data-toggle="collapse"
-
               style={{ height: "65px", padding: "0 30px" }}
             >
               <h6 className="text-dark m-0">
@@ -173,78 +178,87 @@ const Main: FC<{}> = () => {
               </h6>
               <i className="fa fa-angle-down text-dark"></i>
             </span>
-            <CSSTransition in={categoryListShow} timeout={100} classNames="my-node">
-            <nav
-              className={"collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light collapse" + (categoryListShow && ' show')}
-              id="navbar-vertical"
-              style={{ width: "calc(100% - 25px)", zIndex: 999 }}
+            <CSSTransition
+              in={categoryListShow}
+              timeout={100}
+              classNames="my-node"
             >
-                    <div ref={nodeRef} className="navbar-nav w-100">
-                        <div className="nav-item dropdown dropright">
-                        <a
-                            href="#"
-                            className="nav-link dropdown-toggle"
-                            data-toggle="dropdown"
-                        >
-                            Dresses{" "}
-                            <i className="fa fa-angle-right float-right mt-1"></i>
-                        </a>
-                        <div className="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                            <a href="" className="dropdown-item">
-                            Men's Dresses
-                            </a>
-                            <a href="" className="dropdown-item">
-                            Women's Dresses
-                            </a>
-                            <a href="" className="dropdown-item">
-                            Baby's Dresses
-                            </a>
-                        </div>
-                        </div>
-                        <DropdownButton
-                            // as={'ButtonGroup'}
-                            key={'end'}
-                            id={`dropdown-button-drop-end`}
-                            drop={'end'}
-                            variant="secondary"
-                            title={` Drop end `}
-                            >
-                            <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                            <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-                            <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
-                            <Dropdown.Divider />
-                            <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
-                        </DropdownButton>
-                        <a href="" className="nav-item nav-link">
-                        Shirts
-                        </a>
-                        <a href="" className="nav-item nav-link">
-                        Jeans
-                        </a>
-                        <a href="" className="nav-item nav-link">
-                        Swimwear
-                        </a>
-                        <a href="" className="nav-item nav-link">
-                        Sleepwear
-                        </a>
-                        <a href="" className="nav-item nav-link">
-                        Sportswear
-                        </a>
-                        <a href="" className="nav-item nav-link">
-                        Jumpsuits
-                        </a>
-                        <a href="" className="nav-item nav-link">
-                        Blazers
-                        </a>
-                        <a href="" className="nav-item nav-link">
-                        Jackets
-                        </a>
-                        <a href="" className="nav-item nav-link">
-                        Shoes
-                        </a>
+              <nav
+                className={
+                  "collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light collapse" +
+                  (categoryListShow && " show")
+                }
+                id="navbar-vertical"
+                style={{ width: "calc(100% - 25px)", zIndex: 999 }}
+              >
+                <div className="navbar-nav w-100">
+                  <div className="nav-item dropdown dropright">
+                    <a
+                      href="#"
+                      className="nav-link dropdown-toggle"
+                      data-toggle="dropdown"
+                    >
+                      Dresses{" "}
+                      <i className="fa fa-angle-right float-right mt-1"></i>
+                    </a>
+                    <div className="dropdown-menu position-absolute rounded-0 border-0 m-0">
+                      <a href="" className="dropdown-item">
+                        Men's Dresses
+                      </a>
+                      <a href="" className="dropdown-item">
+                        Women's Dresses
+                      </a>
+                      <a href="" className="dropdown-item">
+                        Baby's Dresses
+                      </a>
                     </div>
-            </nav>
-                </CSSTransition>
+                  </div>
+                  {/* <DropdownButton
+                    // as={'ButtonGroup'}
+                    key={"end"}
+                    id={`dropdown-button-drop-end`}
+                    drop={"end"}
+                    variant="secondary"
+                    title={` Drop end `}
+                  >
+                    <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+                    <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
+                    <Dropdown.Item eventKey="3">
+                      Something else here
+                    </Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+                  </DropdownButton> */}
+                  <a href="" className="nav-item nav-link">
+                    Shirts
+                  </a>
+                  <a href="" className="nav-item nav-link">
+                    Jeans
+                  </a>
+                  <a href="" className="nav-item nav-link">
+                    Swimwear
+                  </a>
+                  <a href="" className="nav-item nav-link">
+                    Sleepwear
+                  </a>
+                  <a href="" className="nav-item nav-link">
+                    Sportswear
+                  </a>
+                  <a href="" className="nav-item nav-link">
+                    Jumpsuits
+                  </a>
+                  <a href="" className="nav-item nav-link">
+                    Blazers
+                  </a>
+                  <a href="" className="nav-item nav-link">
+                    Jackets
+                  </a>
+                  <a href="" className="nav-item nav-link">
+                    Shoes
+                  </a>
+                </div>
+              </nav>
+            </CSSTransition>
           </div>
           <div className="col-lg-9">
             <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
@@ -328,104 +342,7 @@ const Main: FC<{}> = () => {
       <div className="container-fluid mb-3">
         <div className="row px-xl-5">
           <div className="col-lg-8">
-            <div
-              id="header-carousel"
-              className="carousel slide carousel-fade mb-30 mb-lg-0"
-              data-ride="carousel"
-            >
-              <ol className="carousel-indicators">
-                <li
-                  data-target="#header-carousel"
-                  data-slide-to="0"
-                  className="active"
-                ></li>
-                <li data-target="#header-carousel" data-slide-to="1"></li>
-                <li data-target="#header-carousel" data-slide-to="2"></li>
-              </ol>
-              <div className="carousel-inner">
-                <div
-                  className="carousel-item position-relative active"
-                  style={{ height: "430px" }}
-                >
-                  <img
-                    className="position-absolute w-100 h-100"
-                    src={CarouselOne}
-                    style={{ objectFit: "cover" }}
-                  />
-                  <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                    <div className="p-3" style={{ maxWidth: "700px" }}>
-                      <h1 className="display-4 text-white mb-3 animate__animated animate__fadeInDown">
-                        Men Fashion
-                      </h1>
-                      <p className="mx-md-5 px-5 animate__animated animate__bounceIn">
-                        Lorem rebum magna amet lorem magna erat diam stet.
-                        Sadips duo stet amet amet ndiam elitr ipsum diam
-                      </p>
-                      <a
-                        className="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
-                        href="#"
-                      >
-                        Shop Now
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="carousel-item position-relative"
-                  style={{ height: "430px" }}
-                >
-                  <img
-                    className="position-absolute w-100 h-100"
-                    src={CarouselTwo}
-                    style={{ objectFit: "cover" }}
-                  />
-                  <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                    <div className="p-3" style={{ maxWidth: "700px" }}>
-                      <h1 className="display-4 text-white mb-3 animate__animated animate__fadeInDown">
-                        Women Fashion
-                      </h1>
-                      <p className="mx-md-5 px-5 animate__animated animate__bounceIn">
-                        Lorem rebum magna amet lorem magna erat diam stet.
-                        Sadips duo stet amet amet ndiam elitr ipsum diam
-                      </p>
-                      <a
-                        className="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
-                        href="#"
-                      >
-                        Shop Now
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="carousel-item position-relative"
-                  style={{ height: "430px" }}
-                >
-                  <img
-                    className="position-absolute w-100 h-100"
-                    src={CarouselThree}
-                    style={{ objectFit: "cover" }}
-                  />
-                  <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                    <div className="p-3" style={{ maxWidth: "700px" }}>
-                      <h1 className="display-4 text-white mb-3 animate__animated animate__fadeInDown">
-                        Kids Fashion
-                      </h1>
-                      <p className="mx-md-5 px-5 animate__animated animate__bounceIn">
-                        Lorem rebum magna amet lorem magna erat diam stet.
-                        Sadips duo stet amet amet ndiam elitr ipsum diam
-                      </p>
-                      <a
-                        className="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
-                        href="#"
-                      >
-                        Shop Now
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                  <CarouselFade data={carouselImg}/>
           </div>
           <div className="col-lg-4">
             <div className="product-offer mb-30" style={{ height: "200px" }}>
